@@ -3,26 +3,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-<<<<<<< HEAD
     "start": "next start",
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
     "@apollo/client": "^3.5.7",
-=======
-    "start": "next start"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.5.7",
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/parser": "^5.10.0",
->>>>>>> 380220e4b42dfee8d9ac1e0c1c734dd60dfb321c
     "antd": "^4.18.5",
     "autoprefixer": "^10.4.2",
     "date-fns": "^2.11.1",
     "dotenv": "^14.2.0",
-<<<<<<< HEAD
     "graphql": "^16.2.0",
     "husky": "^7.0.4",
     "lodash": "^4.17.21",
@@ -32,39 +22,11 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.49.0",
-=======
-    "eslint": "^8.7.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "graphql": "^16.2.0",
-    "gray-matter": "^4.0.2",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.1",
-    "lodash": "^4.17.21",
-    "next": "latest",
-    "postcss": "^8.4.5",
-    "prettier": "^2.5.1",
-    "qs": "^6.10.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "remark": "^14.0.1",
-    "remark-html": "^15.0.0",
-    "sass": "^1.49.0",
-    "stylelint": "^14.3.0",
-    "stylelint-config-standard": "^24.0.0",
->>>>>>> 380220e4b42dfee8d9ac1e0c1c734dd60dfb321c
     "tailwindcss": "^3.0.15"
   },
   "devDependencies": {
     "@types/node": "^17.0.10",
     "@types/react": "^17.0.38",
-<<<<<<< HEAD
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "eslint": "^8.7.0",
@@ -94,8 +56,5 @@
     "*.{json,md,html}": [
       "prettier --write"
     ]
-=======
-    "typescript": "^4.5.5"
->>>>>>> 380220e4b42dfee8d9ac1e0c1c734dd60dfb321c
   }
 }
