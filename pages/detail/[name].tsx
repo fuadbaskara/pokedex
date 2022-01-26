@@ -1,17 +1,23 @@
-import Layout from '../../components/layout'
+import Layout from 'components/layout'
 import { useQuery } from '@apollo/client'
 import { GET_POKEMON_DETAIL } from 'gql/queries'
 import { Card, Button, Modal, Input, Form, notification } from 'antd'
 import { useContext, useState, useEffect } from 'react'
 import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
-export default function Post({ name, nickname }) {
+interface Props {
+  name: string
+  nickname: string
+}
+
+export default function Post({ name, nickname }: Props) {
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const { loading, data } = useQuery(GET_POKEMON_DETAIL, {
     variables: {
-      name: name,
+      name,
     },
   })
   const { pokemons, catchPokemon, releasePokemon } = useContext(PokemonContext)
@@ -80,10 +86,10 @@ export default function Post({ name, nickname }) {
     <Layout>
       {pokemonDetail && (
         <Card>
-          <img
+          <Image
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonDetail.id}.png`}
             alt={`${pokemonDetail.name} image`}
-          ></img>
+          />
           <p style={{ textTransform: 'capitalize' }}>{pokemonDetail.name}</p>
           {nickname && (
             <p style={{ textTransform: 'capitalize' }}>

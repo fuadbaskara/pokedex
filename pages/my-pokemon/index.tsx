@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import Layout from 'components/layout'
 import { PokemonContext } from 'context'
 
-const PokemonList = () => {
+function PokemonList() {
   const { pokemons } = useContext(PokemonContext)
 
   return (

@@ -12,7 +12,7 @@ interface Props {
   home?: boolean
 }
 
-export default function Layout({ children, home }: Props) {
+function Layout({ children, home }: Props) {
   return (
     <div className="container">
       <Head>
@@ -73,4 +73,11 @@ export default function Layout({ children, home }: Props) {
       )}
     </div>
   )
+}
+
+export default Layout
+
+Layout.defaultProps = {
+  children: null,
+  home: false,
 }

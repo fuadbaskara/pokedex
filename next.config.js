@@ -6,9 +6,6 @@ module.exports = {
   env: {
     ...localEnv,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },

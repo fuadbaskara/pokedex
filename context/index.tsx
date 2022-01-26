@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useState, useEffect, ReactNode } from 'react'
 
 type PokemonContextType = {
@@ -12,7 +13,7 @@ interface Props {
 
 export const PokemonContext = createContext<PokemonContextType>(null)
 
-const PokemonProvider = ({ children }: Props) => {
+function PokemonProvider({ children }: Props) {
   const [pokemons, setPokemons] = useState([])
 
   const releasePokemon = (nickname: any) => {

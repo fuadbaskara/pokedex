@@ -3,10 +3,10 @@ import { useQuery } from '@apollo/client'
 import { GET_POKEMONS } from 'gql/queries'
 import { Card, Button, Row, Col } from 'antd'
 import Image from 'next/image'
-import { useState, useRef, useEffect, useContext } from 'react'
+import { useRef, useEffect, useContext } from 'react'
 import { PokemonContext } from 'context'
 
-const PokemonList = () => {
+function PokemonList() {
   let offset = 1
   const { loading, fetchMore, data } = useQuery(GET_POKEMONS, {
     variables: {

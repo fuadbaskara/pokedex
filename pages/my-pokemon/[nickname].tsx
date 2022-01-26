@@ -1,10 +1,15 @@
-import Layout from '../../components/layout'
 import { Card, Button, Modal, notification } from 'antd'
 import { useContext, useEffect, useState } from 'react'
 import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
+import Layout from 'components/layout'
+import Image from 'next/image'
 
-export default function Post({ nickname }) {
+interface Props {
+  nickname: string
+}
+
+export default function Post({ nickname }: Props) {
   const router = useRouter()
   const { pokemons, releasePokemon } = useContext(PokemonContext)
   const [myPokemonDetail, setPokemonDetail] = useState(null)
@@ -28,6 +33,7 @@ export default function Post({ nickname }) {
     })
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const setDetail = () => {
     const selectedPokemonDetail = pokemons.filter(
       (pokemon) => pokemon.nickname === nickname,
@@ -43,10 +49,10 @@ export default function Post({ nickname }) {
     <Layout>
       {myPokemonDetail && (
         <Card>
-          <img
+          <Image
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${myPokemonDetail.id}.png`}
             alt={`${myPokemonDetail.name} image`}
-          ></img>
+          />
           <p style={{ textTransform: 'capitalize' }}>{myPokemonDetail.name}</p>
           <p style={{ textTransform: 'capitalize' }}>
             {myPokemonDetail.nickname}
