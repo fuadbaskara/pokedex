@@ -52,7 +52,7 @@ export default function Post({ nickname }) {
             {myPokemonDetail.nickname}
           </p>
           <Button className="" type="primary" onClick={releaseThisPokemon}>
-            RELEASES
+            RELEASE
           </Button>
         </Card>
       )}
