@@ -21,6 +21,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
+    'plugin:@next/next/recommended',
     'prettier',
   ],
   rules: {
@@ -35,6 +36,10 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/no-array-index-key': 'off',
     'react/no-danger': 'off',
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'function-declaration' },
+    ],
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',

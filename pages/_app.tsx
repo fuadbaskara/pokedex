@@ -3,8 +3,14 @@ import 'antd/dist/antd.css'
 import { ApolloProvider } from '@apollo/client'
 import { client } from 'gql'
 import PokemonProvider from 'context'
+import { ReactNode } from 'react'
 
-export default function App({ Component, pageProps }) {
+interface Props {
+  Component: any
+  pageProps: any
+}
+
+const App = ({ Component, pageProps }: Props) => {
   return (
     <PokemonProvider>
       <ApolloProvider client={client}>
@@ -13,3 +19,5 @@ export default function App({ Component, pageProps }) {
     </PokemonProvider>
   )
 }
+
+export default App
