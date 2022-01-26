@@ -26,7 +26,7 @@ function PokemonList() {
                 href={`detail/${pokemon.name}?nickname=${pokemon.nickname}`}
               >
                 <Button className="" type="primary">
-                  DETAIL
+                  DETAILS
                 </Button>
               </Link>
             </Card>
