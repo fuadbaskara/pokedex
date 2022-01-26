@@ -7,7 +7,7 @@
     "lint": "next lint",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "check-types": "tsc --pretty --noEmit",
-    "check-format": "prettier --check .",
+    "check-format": "prettier --check './pages/*.{ts,tsx}'",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
     "prepare": "husky install"
