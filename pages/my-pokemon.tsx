@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Card, Button, Row, Col } from 'antd'
-import Image from 'next/image'
+import { Button, Row, Col } from 'antd'
 import { useContext } from 'react'
 import Layout from 'components/layout'
 import { PokemonContext } from 'context'

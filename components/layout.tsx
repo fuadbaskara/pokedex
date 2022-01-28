@@ -1,7 +1,6 @@
 /* eslint-disable no-lonely-if */
 import Head from 'next/head'
 import Image from 'next/image'
-import utilStyles from 'styles/utils.module.scss'
 import Link from 'next/link'
 import { ReactNode, useEffect } from 'react'
 import { Row, Col, Button, Menu, Layout } from 'antd'
@@ -18,11 +17,10 @@ interface PageDescription {
 
 interface Props {
   children?: ReactNode
-  home?: boolean
   pageDescription?: PageDescription
 }
 
-function PageLayout({ children, home, pageDescription }: Props) {
+function PageLayout({ children, pageDescription }: Props) {
   let prevScrollpos = null
   const router = useRouter()
   const selectedKeys = [router.asPath]
@@ -195,6 +193,5 @@ export default PageLayout
 
 PageLayout.defaultProps = {
   children: null,
-  home: false,
   pageDescription: null,
 }

@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import { useQuery } from '@apollo/client'
 import { GET_POKEMONS } from 'gql/queries'
-import { Card, Button, Row, Col } from 'antd'
-import Image from 'next/image'
+import { Button, Row, Col } from 'antd'
 import { useRef, useEffect, useContext } from 'react'
 import { PokemonContext } from 'context'
 import PokemonCard from './common/pokemon-card'
@@ -45,10 +44,10 @@ function PokemonList() {
   }
 
   useEffect(() => {
-    // const onIntersection = (entries) =>
-    //   entries[0].isIntersecting && !loading && handleMore()
-    // const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
-    // observer.observe(scrollRef.current)
+    const onIntersection = (entries) =>
+      entries[0].isIntersecting && !loading && handleMore()
+    const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
+    observer.observe(scrollRef.current)
   }, [loading])
 
   return (

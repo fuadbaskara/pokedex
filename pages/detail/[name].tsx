@@ -1,11 +1,10 @@
 import Layout from 'components/layout'
 import { useQuery } from '@apollo/client'
 import { GET_POKEMON_DETAIL } from 'gql/queries'
-import { Card, Button, Modal, Input, Form, notification, Row, Col } from 'antd'
+import { Button, Modal, Input, Form, notification, Row, Col } from 'antd'
 import { useContext, useState, useEffect } from 'react'
 import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 import PokemonCard from 'components/common/pokemon-card'
 import Link from 'next/link'
 

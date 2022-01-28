@@ -1,5 +1,4 @@
-import { Card, Button, Row, Col } from 'antd'
-import Link from 'next/link'
+import { Card, Row, Col } from 'antd'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 
