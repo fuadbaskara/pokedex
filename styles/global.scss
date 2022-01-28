@@ -49,6 +49,10 @@
   }
 }
 
+p {
+  margin: 0 !important;
+}
+
 @font-face {
   font-family: 'Fazz Neue';
   src: url('../public/fonts/FazzNeue-Regular.woff2') format('woff2'),
@@ -306,6 +310,7 @@ strong {
 
 #skeleton-card {
   height: 100%;
+  width: 100%;
   .ant-card {
     margin: 10px;
     height: 100%;
@@ -333,6 +338,150 @@ strong {
   background-size: 400% 100%;
   -webkit-animation: skeleton-loading 1.4s ease infinite;
   animation: skeleton-loading 1.4s ease infinite;
+}
+
+#pokemon-card {
+  .ant-card-body {
+    padding: 0;
+  }
+  .card-inner-containers {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    .pokemon-info {
+      padding: 24px;
+      max-height: 259px;
+      overflow: scroll;
+    }
+    .action-containers {
+      opacity: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: rgba(17, 17, 17, 0.9);
+      transform: translateY(72px);
+      transition: all 0.3s ease;
+    }
+    &:hover {
+      .action-containers {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+  }
+}
+
+.ant-divider {
+  border-top: 1px solid rgb(243, 198, 105) !important;
+}
+
+.ant-tag {
+  background: #f3c669 !important;
+  border: 1px solid rgb(243, 198, 105) !important;
+  margin-bottom: 4px !important;
+}
+
+.img-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: linear-gradient(
+    110deg,
+    rgba(248, 171, 3, 0.7) 25%,
+    rgba(248, 171, 3, 0.8) 37%,
+    rgba(248, 171, 3, 0.7) 63%
+  );
+  background-size: 400% 100%;
+  -webkit-animation: skeleton-loading 1.4s ease infinite;
+  animation: skeleton-loading 1.4s ease infinite;
+  .img-border {
+    position: absolute;
+    border: 1px solid #f3c669 !important;
+    border-radius: 8px;
+  }
+}
+
+.md-skeleton {
+  display: block;
+}
+.sm-skeleton {
+  display: none;
+}
+
+@media screen and (max-width: 425px) {
+  .md-skeleton {
+    display: none;
+  }
+  .sm-skeleton {
+    display: block;
+  }
+}
+
+.empty-img-wrapper {
+  border: 1px solid #f3c669 !important;
+  border-radius: 8px;
+  width: fit-content;
+  margin: 0 auto;
+  .empty-img {
+    border-radius: 8px;
+  }
+}
+
+.back-btn {
+  background: transparent !important;
+  span {
+    transition: all 0.4s ease;
+  }
+  &:hover,
+  :focus {
+    color: #f3c669 !important;
+    border: 1px solid rgb(243, 198, 105) !important;
+    transform: translateY(-4px);
+    span {
+      color: #f3c669 !important;
+    }
+  }
+}
+
+.ant-tabs {
+  margin: 10px !important;
+  color: #fff !important;
+  .ant-tabs-tab {
+    border: 1px solid #f3c669 !important;
+    background: rgba(17, 17, 17, 0.9) !important;
+    &:hover {
+      color: #f3c669 !important;
+    }
+  }
+  .ant-tabs-tab-active {
+    color: #faad12 !important;
+    background: #f3c669 !important;
+    div {
+      color: rgba(17, 17, 17, 0.9) !important;
+    }
+  }
+  .ant-tabs-nav {
+    &:before {
+      border-bottom: 1px solid #f3c669 !important;
+    }
+  }
+  .ant-tabs-content-holder {
+    border: 1px solid #f3c669 !important;
+    border-radius: 8px;
+    background: rgb(66, 66, 66) !important;
+    .ant-tabs-content {
+      color: #fff !important;
+    }
+  }
+}
+
+#pokemon-detail {
+  .pokemon-info {
+    max-height: 100% !important;
+  }
 }
 
 @keyframes skeleton-loading {

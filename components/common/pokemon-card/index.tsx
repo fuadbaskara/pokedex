@@ -1,4 +1,4 @@
-import { Card, Row, Col } from 'antd'
+import { Card, Row, Col, Divider } from 'antd'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 
@@ -7,6 +7,7 @@ interface Props {
   pokemon: any
   col?: number
   actions: ReactNode[]
+  additionalInfo?: () => ReactNode | ReactNode
 }
 
 const cardStyle = {
@@ -14,57 +15,81 @@ const cardStyle = {
     '0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%)',
   margin: '10px',
   backgroundColor: '#424242',
-  border: '1px solid #424242',
+  border: '1px solid #f3c669',
+  borderRadius: '8px',
+  padding: 0,
 }
 
 const rawUrl = (id) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
-function PokemonCard({ pokemons, pokemon, col, actions }: Props) {
+function PokemonCard({
+  pokemons,
+  pokemon,
+  col,
+  actions,
+  additionalInfo,
+}: Props) {
   return (
-    <Card style={cardStyle}>
-      <Row justify="center">
-        <Col span={col}>
-          <div className="flex justify-center">
-            <Image
-              src={pokemon.id ? rawUrl(pokemon.id) : pokemon.image}
-              width="100%"
-              height="100%"
-              alt={`${pokemon.name} image`}
-            />
+    <div id="pokemon-card">
+      <Card style={cardStyle}>
+        <div className="card-inner-containers">
+          <div className="pokemon-info">
+            <Row justify="center">
+              <Col span={col}>
+                <div className="img-container flex justify-center">
+                  <Image
+                    src={pokemon.id ? rawUrl(pokemon.id) : pokemon.image}
+                    width="100%"
+                    height="100%"
+                    alt={`${pokemon.name} image`}
+                    className="img-border"
+                  />
+                </div>
+              </Col>
+              <Col span={col}>
+                <div className="pokemon-description">
+                  <Divider />
+                  <div className="flex justify-between">
+                    <p className="font-bold">Name</p>
+                    <p className="capitalize text-center">{pokemon.name}</p>
+                  </div>
+                  {pokemon.nickname && (
+                    <div className="flex justify-between">
+                      <p className="font-bold">Nickname</p>
+                      <p className="text-center">{pokemon.nickname}</p>
+                    </div>
+                  )}
+                  <div className="flex justify-start">
+                    <small>{`Owned (${
+                      (pokemons || []).filter(
+                        (pokemonInfo) => pokemonInfo.name === pokemon.name,
+                      ).length
+                    })`}</small>
+                  </div>
+                  {additionalInfo && additionalInfo()}
+                </div>
+              </Col>
+            </Row>
           </div>
-        </Col>
-        <Col span={col}>
-          <div className="flex justify-center">
-            <p style={{ textTransform: 'capitalize' }}>{pokemon.name}</p>
+          <div className="action-containers flex justify-center items-center">
+            <Row justify="center">
+              {actions.map((item, key) => (
+                <Col key={key} span={col}>
+                  {item}
+                </Col>
+              ))}
+            </Row>
           </div>
-          {pokemon.nickname && (
-            <p style={{ textTransform: 'capitalize', textAlign: 'center' }}>
-              {pokemon.nickname}
-            </p>
-          )}
-          <div className="flex justify-center">
-            <p>{`Owned (${
-              (pokemons || []).filter(
-                (pokemonInfo) => pokemonInfo.name === pokemon.name,
-              ).length
-            })`}</p>
-          </div>
-        </Col>
-      </Row>
-      <Row justify="center">
-        {actions.map((item, key) => (
-          <Col key={key} span={col}>
-            {item}
-          </Col>
-        ))}
-      </Row>
-    </Card>
+        </div>
+      </Card>
+    </div>
   )
 }
 
 PokemonCard.defaultProps = {
   col: 24,
+  additionalInfo: null,
 }
 
 export default PokemonCard
