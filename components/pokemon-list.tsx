@@ -74,8 +74,23 @@ function PokemonList() {
         ))}
       </Row>
       <Row justify="center">
+        <div className="md-skeleton w-full">
+          <Row justify="center">
+            <Col xs={24} sm={24} md={8}>
+              <SkeletonCard />
+            </Col>
+            <Col xs={24} sm={24} md={8}>
+              <SkeletonCard />
+            </Col>
+            <Col xs={24} sm={24} md={8}>
+              <SkeletonCard />
+            </Col>
+          </Row>
+        </div>
         <Col xs={24} sm={24} md={8}>
-          <SkeletonCard />
+          <div className="sm-skeleton">
+            <SkeletonCard />
+          </div>
         </Col>
       </Row>
       <div className="infinite-scroll" ref={scrollRef} />

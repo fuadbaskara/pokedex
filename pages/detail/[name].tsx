@@ -1,19 +1,34 @@
+/* eslint-disable no-new */
 import Layout from 'components/layout'
 import { useQuery } from '@apollo/client'
 import { GET_POKEMON_DETAIL } from 'gql/queries'
-import { Button, Modal, Input, Form, notification, Row, Col } from 'antd'
+import {
+  Button,
+  Modal,
+  Input,
+  Form,
+  notification,
+  Row,
+  Col,
+  Tabs,
+  Divider,
+} from 'antd'
 import { useContext, useState, useEffect } from 'react'
 import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
 import PokemonCard from 'components/common/pokemon-card'
 import Link from 'next/link'
+import CommonField from 'components/common-field'
+import { Stats } from 'components/stats'
+import Moves from 'components/moves'
+import Types from 'components/types'
 
 interface Props {
   name: string
   nickname: string
 }
 
-export default function Post({ name, nickname }: Props) {
+export default function PokemonDetail({ name, nickname }: Props) {
   const router = useRouter()
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
@@ -65,6 +80,13 @@ export default function Post({ name, nickname }: Props) {
   const catchThisPokemon = () => {
     if (Math.random() > 0.5) {
       setVisible(true)
+    } else {
+      Modal.error({
+        title: `Oh Noes! ${pokemonDetail.name} has escaped :(`,
+        content: (
+          <p>{`${pokemonDetail.name} has run away! you might be scared it too much, No problem be gentle next time and try again`}</p>
+        ),
+      })
     }
   }
 
@@ -87,57 +109,92 @@ export default function Post({ name, nickname }: Props) {
     })
   }
 
+  const additionalInfo = (pokemonDetail: any) => (
+    <>
+      <Divider />
+      <CommonField
+        fieldName="Species"
+        fieldValue={pokemonDetail.species.name}
+      />
+      <CommonField fieldName="ID" fieldValue={pokemonDetail.id} />
+      <CommonField fieldName="Height" fieldValue={pokemonDetail.height} />
+      <CommonField fieldName="Weight" fieldValue={pokemonDetail.weight} />
+      <CommonField
+        fieldName="Base Exp."
+        fieldValue={pokemonDetail.base_experience}
+      />
+    </>
+  )
+
   return (
     <Layout>
-      <div style={{ paddingBottom: '120px' }}>
+      <div id="pokemon-detail" style={{ paddingBottom: '120px' }}>
         {pokemonDetail && (
-          <Row justify="center">
-            <Col xs={24} sm={24} md={12}>
-              <PokemonCard
-                pokemons={pokemons}
-                pokemon={pokemonDetail}
-                actions={[
-                  !nickname && (
-                    <div className="flex justify-center">
-                      <Button
-                        className="mr-2"
-                        type="primary"
-                        onClick={catchThisPokemon}
-                      >
-                        CATCH
-                      </Button>
-                      {pokemonCathced && (
-                        <Link
-                          href={`/detail/${newNickname}?nickname=${nickname}`}
+          <>
+            <Row justify="center">
+              <Col xs={24} sm={24} md={12}>
+                <PokemonCard
+                  pokemons={pokemons}
+                  pokemon={pokemonDetail}
+                  additionalInfo={() => additionalInfo(pokemonDetail)}
+                  actions={[
+                    !nickname && (
+                      <div className="flex justify-center">
+                        <Button
+                          className="mr-2"
+                          type="primary"
+                          onClick={catchThisPokemon}
                         >
-                          <a>
-                            <Button
-                              className=""
-                              type="primary"
-                              onClick={catchThisPokemon}
-                            >
-                              DETAIL
-                            </Button>
-                          </a>
-                        </Link>
-                      )}
-                    </div>
-                  ),
-                  nickname && (
-                    <div className="flex justify-center">
-                      <Button
-                        className=""
-                        type="primary"
-                        onClick={releaseThisPokemon}
-                      >
-                        RELEASE
-                      </Button>
-                    </div>
-                  ),
-                ]}
-              />
-            </Col>
-          </Row>
+                          CATCH
+                        </Button>
+                        {pokemonCathced && (newNickname || nickname) && (
+                          <Link
+                            href={`/detail/${newNickname}?nickname=${
+                              newNickname || nickname
+                            }`}
+                          >
+                            <a>
+                              <Button className="" type="primary">
+                                DETAIL
+                              </Button>
+                            </a>
+                          </Link>
+                        )}
+                      </div>
+                    ),
+                    nickname && (
+                      <div className="flex justify-center">
+                        <Button
+                          className=""
+                          type="primary"
+                          onClick={releaseThisPokemon}
+                        >
+                          RELEASE
+                        </Button>
+                      </div>
+                    ),
+                  ]}
+                />
+              </Col>
+            </Row>
+            <div>
+              <Row justify="center">
+                <Col xs={24} sm={24} md={12}>
+                  <Tabs defaultActiveKey="1" type="card">
+                    <Tabs.TabPane tab="Stats" key="1">
+                      {pokemonDetail && Stats(pokemonDetail)}
+                    </Tabs.TabPane>
+                    <Tabs.TabPane tab="Types" key="2">
+                      {pokemonDetail && Types(pokemonDetail)}
+                    </Tabs.TabPane>
+                    <Tabs.TabPane tab="Moves" key="3">
+                      {pokemonDetail && Moves(pokemonDetail)}
+                    </Tabs.TabPane>
+                  </Tabs>
+                </Col>
+              </Row>
+            </div>
+          </>
         )}
       </div>
       <Modal
@@ -157,6 +214,26 @@ export default function Post({ name, nickname }: Props) {
                 required: true,
                 message: 'Please give your pokemon a nickname',
               },
+              () => ({
+                validator(_, value) {
+                  const myPokemon = localStorage.getItem('pokemons')
+                    ? JSON.parse(localStorage.getItem('pokemons'))
+                    : []
+                  const isNicknameUsed = (myPokemon || []).filter(
+                    (pokemon) =>
+                      pokemon.name === pokemonDetail.name &&
+                      pokemon.nickname === value,
+                  )
+                  if (isNicknameUsed[0]) {
+                    return Promise.reject(
+                      new Error(
+                        `you have a same pokemon with the name ${value} already, please choose another nickname!`,
+                      ),
+                    )
+                  }
+                  return Promise.resolve()
+                },
+              }),
             ]}
           >
             <Input placeholder="Plase enter your new pokemon nickname" />
