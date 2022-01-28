@@ -33,6 +33,8 @@ export default function PokemonDetail({ name, nickname }: Props) {
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const { loading, data } = useQuery(GET_POKEMON_DETAIL, {
+    fetchPolicy: 'no-cache',
+    nextFetchPolicy: 'no-cache',
     variables: {
       name,
     },
