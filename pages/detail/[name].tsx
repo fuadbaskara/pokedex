@@ -1,11 +1,13 @@
 import Layout from 'components/layout'
 import { useQuery } from '@apollo/client'
 import { GET_POKEMON_DETAIL } from 'gql/queries'
-import { Card, Button, Modal, Input, Form, notification } from 'antd'
+import { Card, Button, Modal, Input, Form, notification, Row, Col } from 'antd'
 import { useContext, useState, useEffect } from 'react'
 import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import PokemonCard from 'components/common/pokemon-card'
+import Link from 'next/link'
 
 interface Props {
   name: string
@@ -13,6 +15,7 @@ interface Props {
 }
 
 export default function Post({ name, nickname }: Props) {
+  const router = useRouter()
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const { loading, data } = useQuery(GET_POKEMON_DETAIL, {
@@ -21,7 +24,8 @@ export default function Post({ name, nickname }: Props) {
     },
   })
   const { pokemons, catchPokemon, releasePokemon } = useContext(PokemonContext)
-  const router = useRouter()
+  const [pokemonCathced, setPokemonCatched] = useState(false)
+  const [newNickname, setNickname] = useState('')
   const [pokemonDetail, setPokemonDetail] = useState(null)
 
   const releaseThisPokemon = () => {
@@ -71,7 +75,9 @@ export default function Post({ name, nickname }: Props) {
         ...data.pokemon,
         nickname: values.nickname,
       }
+      setNickname(values.nickname)
       catchPokemon(pokemonInfo)
+      setPokemonCatched(true)
 
       notification.success({
         message: 'Pokemon Successfully Captured!',
@@ -84,32 +90,57 @@ export default function Post({ name, nickname }: Props) {
 
   return (
     <Layout>
-      {pokemonDetail && (
-        <Card>
-          <Image
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonDetail.id}.png`}
-            width="100%"
-            height="100%"
-            alt={`${pokemonDetail.name} image`}
-          />
-          <p style={{ textTransform: 'capitalize' }}>{pokemonDetail.name}</p>
-          {nickname && (
-            <p style={{ textTransform: 'capitalize' }}>
-              {pokemonDetail.nickname}
-            </p>
-          )}
-          {!nickname && (
-            <Button className="" type="primary" onClick={catchThisPokemon}>
-              CATCH
-            </Button>
-          )}
-          {nickname && (
-            <Button className="" type="primary" onClick={releaseThisPokemon}>
-              RELEASE
-            </Button>
-          )}
-        </Card>
-      )}
+      <div style={{ paddingBottom: '120px' }}>
+        {pokemonDetail && (
+          <Row justify="center">
+            <Col xs={24} sm={24} md={12}>
+              <PokemonCard
+                pokemons={pokemons}
+                pokemon={pokemonDetail}
+                actions={[
+                  !nickname && (
+                    <div className="flex justify-center">
+                      <Button
+                        className="mr-2"
+                        type="primary"
+                        onClick={catchThisPokemon}
+                      >
+                        CATCH
+                      </Button>
+                      {pokemonCathced && (
+                        <Link
+                          href={`/detail/${newNickname}?nickname=${nickname}`}
+                        >
+                          <a>
+                            <Button
+                              className=""
+                              type="primary"
+                              onClick={catchThisPokemon}
+                            >
+                              DETAIL
+                            </Button>
+                          </a>
+                        </Link>
+                      )}
+                    </div>
+                  ),
+                  nickname && (
+                    <div className="flex justify-center">
+                      <Button
+                        className=""
+                        type="primary"
+                        onClick={releaseThisPokemon}
+                      >
+                        RELEASE
+                      </Button>
+                    </div>
+                  ),
+                ]}
+              />
+            </Col>
+          </Row>
+        )}
+      </div>
       <Modal
         destroyOnClose
         visible={visible}

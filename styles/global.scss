@@ -49,14 +49,112 @@
   }
 }
 
+@font-face {
+  font-family: 'Fazz Neue';
+  src: url('../public/fonts/FazzNeue-Regular.woff2') format('woff2'),
+    url('../public/fonts/FazzNeue-Regular.woff') format('woff'),
+    url('../public/fonts/FazzNeue-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fazz Neue';
+  src: url('../public/fonts/FazzNeue-Medium.woff2') format('woff2'),
+    url('../public/fonts/FazzNeue-Medium.woff') format('woff'),
+    url('../public/fonts/FazzNeue-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fazz Neue';
+  src: url('../public/fonts/FazzNeue-Heavy.woff2') format('woff2'),
+    url('../public/fonts/FazzNeue-Heavy.woff') format('woff'),
+    url('../public/fonts/FazzNeue-Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fazz Neue';
+  src: url('../public/fonts/FazzNeue-Light.woff2') format('woff2'),
+    url('../public/fonts/FazzNeue-Light.woff') format('woff'),
+    url('../public/fonts/FazzNeue-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fazz Neue';
+  src: url('../public/fonts/FazzNeue-Bold.woff2') format('woff2'),
+    url('../public/fonts/FazzNeue-Bold.woff') format('woff'),
+    url('../public/fonts/FazzNeue-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  line-height: 1.6;
+  font-family: 'Fazz Neue', -apple-system, BlinkMacSystemFont, 'Roboto',
+    'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif !important;
   font-size: 18px;
+  background-color: #303030 !important;
+}
+
+#__next {
+  background-color: #303030;
+}
+
+.ant-layout {
+  background-color: #303030 !important;
+  .ant-layout-header {
+    background: rgba(17, 17, 17, 0.9);
+    ul {
+      background: transparent;
+    }
+  }
+}
+
+.ant-input {
+  background: transparent !important;
+  color: #ffff !important;
+}
+
+.ant-notification-notice {
+  background: rgb(66, 66, 66) !important;
+  div,
+  span {
+    color: #ffffff !important;
+  }
+}
+
+.ant-modal-content {
+  background: rgb(66, 66, 66) !important;
+}
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
+  background-color: #f3c669 !important;
+}
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
+  background-color: #f3c669 !important;
+}
+.ant-menu-item-selected {
+  background-color: #f3c669 !important;
+}
+
+.ant-menu-item,
+.ant-menu-submenu {
+  position: relative;
+  background-color: transparent;
 }
 
 * {
@@ -87,8 +185,161 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 3.5rem;
 }
 
 .backToHome {
   margin: 3rem 0 0;
+}
+
+.parallax-container {
+  display: block;
+  width: 100%;
+  height: 50vw;
+  margin-top: 64px;
+  min-height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
+  background-color: #424242;
+  img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    opacity: 1 !important;
+    border: none;
+    position: absolute;
+    right: 0;
+    height: 49.2vw;
+    min-height: 500px;
+    pointer-events: none !important;
+    mix-blend-mode: exclusion;
+  }
+  .parallax-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    .gradient {
+      position: absolute;
+      bottom: 0px;
+      left: -100%;
+      width: 300%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse farthest-side at 50% 0,
+        rgba(48, 48, 48, 0) 0%,
+        rgba(48, 48, 48, 0) 80%,
+        #303030 94%
+      );
+    }
+  }
+}
+
+.navbar {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  transition: top 0.3s;
+}
+
+@media screen and (max-width: 425px) {
+  .navbar {
+    display: none;
+  }
+  .parallax-container {
+    margin-top: 0px;
+  }
+}
+
+p,
+span,
+label,
+h1,
+h2,
+h3,
+h4,
+small,
+strong {
+  color: #ffffff !important;
+}
+
+.ant-btn {
+  background: rgb(66, 66, 66) !important;
+  &:hover,
+  :focus {
+    color: #f3c669;
+    span {
+      color: #f3c669;
+    }
+    border-color: #f3c669;
+  }
+}
+
+.ant-btn-primary {
+  background: rgba(17, 17, 17, 0.9) !important;
+  border-color: rgba(17, 17, 17, 0.9) !important;
+  &:hover,
+  :focus {
+    color: #fff !important;
+    border-color: #f3c669 !important;
+    background: #f3c669 !important;
+  }
+}
+
+#skeleton-card {
+  height: 100%;
+  .ant-card {
+    margin: 10px;
+    height: 100%;
+    background: rgb(66, 66, 66) !important;
+    border-color: rgb(66, 66, 66) !important;
+    .ant-card-body {
+      min-height: 252px;
+      display: flex;
+    }
+  }
+}
+
+.skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(190, 190, 190, 0.2) 25%,
+    rgba(129, 129, 129, 0.24) 37%,
+    rgba(190, 190, 190, 0.2) 63%
+  );
+  background-size: 400% 100%;
+  -webkit-animation: skeleton-loading 1.4s ease infinite;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
