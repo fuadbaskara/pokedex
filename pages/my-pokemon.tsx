@@ -10,8 +10,13 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 function PokemonList() {
   const { pokemons } = useContext(PokemonContext)
 
+  const pageDescription = {
+    title: 'My Pokemon',
+    description: 'These are all the Pokemons you have catched so far.',
+  }
+
   return (
-    <Layout>
+    <Layout pageDescription={pageDescription}>
       <div style={{ paddingBottom: '120px' }}>
         <Row justify="center">
           {(pokemons || []).map((pokemon: any, idx: number) => (

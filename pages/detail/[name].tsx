@@ -128,8 +128,13 @@ export default function PokemonDetail({ name, nickname }: Props) {
     </>
   )
 
+  const pageDescription = {
+    title: 'Pokemon Detail',
+    description: `Here is all the info we have for this Pokemon`,
+  }
+
   return (
-    <Layout>
+    <Layout pageDescription={pageDescription}>
       <div id="pokemon-detail" style={{ paddingBottom: '120px' }}>
         {pokemonDetail && (
           <>

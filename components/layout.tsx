@@ -103,10 +103,12 @@ function PageLayout({ children, pageDescription }: Props) {
           />
           <div className="parallax-content">
             {pageDescription && (
-              <>
-                <h1>{pageDescription.title}</h1>
-                <span className="subtext">{pageDescription.description}</span>
-              </>
+              <div>
+                <h1 className="text-2xl text-center">
+                  {pageDescription.title}
+                </h1>
+                <p className="text-center">{pageDescription.description}</p>
+              </div>
             )}
             <div className="gradient" />
           </div>
