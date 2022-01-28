@@ -12,7 +12,7 @@
   transition: bottom 0.3s;
   button {
     transform: skewX(-30deg);
-    background-color: rgba(17, 17, 17, 0.9);
+    background-color: rgba(17, 17, 17, 0.9) !important;
     border-right: 1px solid rgba(17, 17, 17, 0.9);
     border-bottom: 1px solid rgba(17, 17, 17, 0.9);
     margin: 0 auto;
@@ -20,7 +20,7 @@
     height: 100%;
     padding: 20px;
     &:hover {
-      background-color: #f3c669;
+      background-color: #f3c669 !important;
     }
     span {
       font-size: 1.5rem;
