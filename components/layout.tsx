@@ -22,7 +22,7 @@ interface Props {
 function PageLayout({ children, pageDescription }: Props) {
   let prevScrollpos = null
   const router = useRouter()
-  const selectedKeys = [router.asPath]
+  const selectedKeys = [router ? router.asPath : '/']
 
   const initLayoutAnimation = () => {
     prevScrollpos = window.pageYOffset
