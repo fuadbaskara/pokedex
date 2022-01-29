@@ -14,6 +14,8 @@ function PokemonList() {
       offset: 1,
       limit: 12,
     },
+    fetchPolicy: 'network-only',
+    nextFetchPolicy: 'cache-first',
   })
   const { pokemons } = useContext(PokemonContext)
   const scrollRef = useRef(null)
@@ -22,7 +24,7 @@ function PokemonList() {
     offset += 12
     fetchMore({
       variables: {
-        offset: offset + 12,
+        offset,
         limit: 12,
       },
       updateQuery: (prevResult, { fetchMoreResult }) => {
