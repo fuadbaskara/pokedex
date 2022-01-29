@@ -7,8 +7,7 @@ import { Row, Col, Button, Menu, Layout } from 'antd'
 import styles from 'styles/layout.module.scss'
 import { useRouter } from 'next/router'
 
-const name = 'Pokemon Archive'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'Pokedex'
 
 interface PageDescription {
   title?: string | ReactNode
@@ -64,7 +63,7 @@ function PageLayout({ children, pageDescription }: Props) {
                   src="/images/pokemon.png"
                   height={50}
                   width={50}
-                  alt={name}
+                  alt="pokemon.png"
                 />
               </a>
             </Link>
@@ -116,7 +115,7 @@ function PageLayout({ children, pageDescription }: Props) {
       </div>
       <div className="container">
         <Head>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/pokemon.ico" />
           <meta
             name="description"
             content="Learn how to build a personal website using Next.js"
@@ -138,7 +137,7 @@ function PageLayout({ children, pageDescription }: Props) {
                 src="/images/pokemon.png"
                 height={108}
                 width={108}
-                alt={name}
+                alt="pokemon.png"
               />
             </a>
           </Link>
