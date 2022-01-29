@@ -118,7 +118,7 @@ function PageLayout({ children, pageDescription }: Props) {
           <link rel="icon" href="/pokemon.ico" />
           <meta
             name="description"
-            content="Learn how to build a personal website using Next.js"
+            content="A Pokemon Wikipedia and mini game using Next.js, Typescript, Apollo client, React Context."
           />
           <meta
             property="og:image"

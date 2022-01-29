@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import Link from 'next/link'
-import { Button, Row, Col } from 'antd'
+import { Button, Row, Col, Modal, notification } from 'antd'
 import { useContext } from 'react'
 import Layout from 'components/layout'
 import { PokemonContext } from 'context'
@@ -8,7 +8,26 @@ import PokemonCard from 'components/common/pokemon-card'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 
 function PokemonList() {
-  const { pokemons } = useContext(PokemonContext)
+  const { pokemons, releasePokemon } = useContext(PokemonContext)
+
+  const releaseThisPokemon = (nickname: string) => {
+    Modal.confirm({
+      title: `Are you sure want to release ${
+        nickname || 'this pokemon'
+      } to the wild?`,
+      onOk: () => {
+        releasePokemon(nickname)
+        notification.success({
+          message: 'Pokemon Successfully Released!',
+          description: `You have released ${
+            nickname || 'this pokemon'
+          } to the wild.`,
+        })
+        // router.push('/my-pokemon')
+      },
+      onCancel: () => {},
+    })
+  }
 
   const pageDescription = {
     title: 'My Pokemon',
@@ -20,7 +39,7 @@ function PokemonList() {
       <div style={{ paddingBottom: '120px' }}>
         <Row justify="center">
           {(pokemons || []).map((pokemon: any, idx: number) => (
-            <Col key={idx} xs={24} sm={24} md={8}>
+            <Col key={idx} xs={24} sm={24} md={10}>
               <PokemonCard
                 pokemons={pokemons}
                 pokemon={pokemon}
@@ -30,11 +49,20 @@ function PokemonList() {
                       href={`/detail/${pokemon.name}?nickname=${pokemon.nickname}`}
                     >
                       <a>
-                        <Button className="" type="primary">
+                        <Button className="mr-2" type="primary">
                           DETAILS
                         </Button>
                       </a>
                     </Link>
+                  </div>,
+                  <div key="release-pokemon" className="flex justify-center">
+                    <Button
+                      className="ml-2"
+                      type="primary"
+                      onClick={() => releaseThisPokemon(pokemon.nickname)}
+                    >
+                      RELEASE
+                    </Button>
                   </div>,
                 ]}
               />

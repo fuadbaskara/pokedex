@@ -6,7 +6,7 @@ interface Props {
   pokemons: any[]
   pokemon: any
   col?: number
-  actions: ReactNode[]
+  actions?: ReactNode[]
   additionalInfo?: () => ReactNode | ReactNode
 }
 
@@ -57,7 +57,12 @@ function PokemonCard({
                   {pokemon.nickname && (
                     <div className="flex justify-between">
                       <p className="font-bold">Nickname</p>
-                      <p className="text-center">{pokemon.nickname}</p>
+                      <p
+                        className="text-center break-words"
+                        style={{ maxWidth: '100px' }}
+                      >
+                        {pokemon.nickname}
+                      </p>
                     </div>
                   )}
                   <div className="flex justify-start">
@@ -74,11 +79,13 @@ function PokemonCard({
           </div>
           <div className="action-containers flex justify-center items-center">
             <Row justify="center">
-              {actions.map((item, key) => (
-                <Col key={key} span={col}>
-                  {item}
-                </Col>
-              ))}
+              {(actions || [])
+                .filter((item) => item)
+                .map((item, key) => (
+                  <Col key={key} span={12}>
+                    {item}
+                  </Col>
+                ))}
             </Row>
           </div>
         </div>
@@ -90,6 +97,7 @@ function PokemonCard({
 PokemonCard.defaultProps = {
   col: 24,
   additionalInfo: null,
+  actions: [],
 }
 
 export default PokemonCard

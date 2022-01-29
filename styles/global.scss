@@ -316,6 +316,7 @@ strong {
     height: 100%;
     background: rgb(66, 66, 66) !important;
     border-color: rgb(66, 66, 66) !important;
+    border-radius: 8px;
     .ant-card-body {
       min-height: 252px;
       display: flex;
@@ -329,6 +330,7 @@ strong {
   left: 0;
   height: 100%;
   width: 100%;
+  border-radius: 8px;
   background: linear-gradient(
     90deg,
     rgba(190, 190, 190, 0.2) 25%,

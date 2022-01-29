@@ -22,6 +22,7 @@ import CommonField from 'components/common-field'
 import { Stats } from 'components/stats'
 import Moves from 'components/moves'
 import Types from 'components/types'
+import SkeletonCard from 'components/common/skeleton-card'
 
 interface Props {
   name: string
@@ -202,6 +203,25 @@ export default function PokemonDetail({ name, nickname }: Props) {
               </Row>
             </div>
           </>
+        )}
+        {!pokemonDetail && (
+          <div className="md-skeleton w-full">
+            <Row justify="center">
+              <Col xs={24} sm={24} md={12}>
+                <SkeletonCard />
+              </Col>
+            </Row>
+            <Row justify="center">
+              <Col xs={24} sm={24} md={12}>
+                <Divider />
+              </Col>
+            </Row>
+            <Row justify="center">
+              <Col xs={24} sm={24} md={12}>
+                <SkeletonCard />
+              </Col>
+            </Row>
+          </div>
         )}
       </div>
       <Modal
