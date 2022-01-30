@@ -63,21 +63,6 @@ function PokemonCard({
                       />
                     )}
                   </Table>
-                  {/* <div className="flex justify-between">
-                    <p className="font-bold">Name</p>
-                    <p className="capitalize text-center">{pokemon.name}</p>
-                  </div>
-                  {pokemon.nickname && (
-                    <div className="flex justify-between">
-                      <p className="font-bold">Nickname</p>
-                      <p
-                        className="text-right break-words"
-                        style={{ maxWidth: '100px' }}
-                      >
-                        {pokemon.nickname}
-                      </p>
-                    </div>
-                  )} */}
                   <div className="flex justify-start">
                     <small>{`Owned (${
                       (pokemons || []).filter(
