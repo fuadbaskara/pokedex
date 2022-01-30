@@ -8,7 +8,7 @@ export default function CommonField({
   return (
     <div className="flex justify-between">
       <p className="font-bold">{fieldName}</p>
-      <p className="capitalize text-center">{fieldValue}</p>
+      <p className="capitalize text-justify">{fieldValue}</p>
     </div>
   )
 }

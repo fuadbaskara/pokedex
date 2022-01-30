@@ -352,8 +352,7 @@ strong {
     border-radius: 8px;
     .pokemon-info {
       padding: 24px;
-      max-height: 259px;
-      overflow: scroll;
+      overflow: auto;
     }
     .action-containers {
       opacity: 0;

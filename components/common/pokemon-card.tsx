@@ -58,7 +58,7 @@ function PokemonCard({
                     <div className="flex justify-between">
                       <p className="font-bold">Nickname</p>
                       <p
-                        className="text-center break-words"
+                        className="text-right break-words"
                         style={{ maxWidth: '100px' }}
                       >
                         {pokemon.nickname}

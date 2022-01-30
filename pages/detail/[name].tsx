@@ -18,7 +18,7 @@ import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
 import PokemonCard from 'components/common/pokemon-card'
 import Link from 'next/link'
-import CommonField from 'components/common-field'
+import CommonField from 'components/common/common-field'
 import { Stats } from 'components/stats'
 import Moves from 'components/moves'
 import Types from 'components/types'
@@ -188,7 +188,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
             <div>
               <Row justify="center">
                 <Col xs={24} sm={24} md={12}>
-                  <Tabs defaultActiveKey="1" type="card">
+                  <Tabs defaultActiveKey="1" type="card" animated>
                     <Tabs.TabPane tab="Stats" key="1">
                       {pokemonDetail && Stats(pokemonDetail)}
                     </Tabs.TabPane>
