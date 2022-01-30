@@ -1,14 +1,25 @@
 export default function CommonField({
   fieldName,
   fieldValue,
+  className,
+  style,
 }: {
   fieldName: any
   fieldValue: any
+  className?: string
+  style?: any
 }) {
   return (
-    <div className="flex justify-between">
-      <p className="font-bold">{fieldName}</p>
-      <p className="capitalize text-justify">{fieldValue}</p>
-    </div>
+    <tr className="flex justify-between">
+      <td className="font-bold">{fieldName}</td>
+      <td className={`capitalize ${className}`} style={style}>
+        {fieldValue}
+      </td>
+    </tr>
   )
+}
+
+CommonField.defaultProps = {
+  className: '',
+  style: null,
 }

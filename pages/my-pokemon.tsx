@@ -6,6 +6,7 @@ import Layout from 'components/layout'
 import { PokemonContext } from 'context'
 import PokemonCard from 'components/common/pokemon-card'
 import { ArrowLeftOutlined } from '@ant-design/icons'
+import Head from 'next/head'
 
 function PokemonList() {
   const { pokemons, releasePokemon } = useContext(PokemonContext)
@@ -36,6 +37,9 @@ function PokemonList() {
 
   return (
     <Layout pageDescription={pageDescription}>
+      <Head>
+        <title>My Pokemon</title>
+      </Head>
       <div style={{ paddingBottom: '120px' }}>
         <Row justify="center">
           {(pokemons || []).map((pokemon: any, idx: number) => (

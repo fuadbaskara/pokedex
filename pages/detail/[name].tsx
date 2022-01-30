@@ -23,6 +23,8 @@ import { Stats } from 'components/stats'
 import Moves from 'components/moves'
 import Types from 'components/types'
 import SkeletonCard from 'components/common/skeleton-card'
+import Head from 'next/head'
+import Table from 'components/common/table'
 
 interface Props {
   name: string
@@ -115,17 +117,19 @@ export default function PokemonDetail({ name, nickname }: Props) {
   const additionalInfo = (pokemonDetail: any) => (
     <>
       <Divider />
-      <CommonField
-        fieldName="Species"
-        fieldValue={pokemonDetail.species.name}
-      />
-      <CommonField fieldName="ID" fieldValue={pokemonDetail.id} />
-      <CommonField fieldName="Height" fieldValue={pokemonDetail.height} />
-      <CommonField fieldName="Weight" fieldValue={pokemonDetail.weight} />
-      <CommonField
-        fieldName="Base Exp."
-        fieldValue={pokemonDetail.base_experience}
-      />
+      <Table>
+        <CommonField
+          fieldName="Species"
+          fieldValue={pokemonDetail.species.name}
+        />
+        <CommonField fieldName="ID" fieldValue={pokemonDetail.id} />
+        <CommonField fieldName="Height" fieldValue={pokemonDetail.height} />
+        <CommonField fieldName="Weight" fieldValue={pokemonDetail.weight} />
+        <CommonField
+          fieldName="Base Exp."
+          fieldValue={pokemonDetail.base_experience}
+        />
+      </Table>
     </>
   )
 
@@ -136,6 +140,9 @@ export default function PokemonDetail({ name, nickname }: Props) {
 
   return (
     <Layout pageDescription={pageDescription}>
+      <Head>
+        <title>Pokemon Detail</title>
+      </Head>
       <div id="pokemon-detail" style={{ paddingBottom: '120px' }}>
         {pokemonDetail && (
           <>
@@ -190,13 +197,13 @@ export default function PokemonDetail({ name, nickname }: Props) {
                 <Col xs={24} sm={24} md={12}>
                   <Tabs defaultActiveKey="1" type="card" animated>
                     <Tabs.TabPane tab="Stats" key="1">
-                      {pokemonDetail && Stats(pokemonDetail)}
+                      {Stats(pokemonDetail)}
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="Types" key="2">
-                      {pokemonDetail && Types(pokemonDetail)}
+                      {Types(pokemonDetail)}
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="Moves" key="3">
-                      {pokemonDetail && Moves(pokemonDetail)}
+                      {Moves(pokemonDetail)}
                     </Tabs.TabPane>
                   </Tabs>
                 </Col>

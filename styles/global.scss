@@ -280,9 +280,17 @@ h1,
 h2,
 h3,
 h4,
+tbody,
+tr,
+th,
+td,
 small,
 strong {
   color: #ffffff !important;
+}
+
+table {
+  width: 100%;
 }
 
 .ant-btn {

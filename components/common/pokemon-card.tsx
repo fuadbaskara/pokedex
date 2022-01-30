@@ -1,6 +1,8 @@
 import { Card, Row, Col, Divider } from 'antd'
 import Image from 'next/image'
 import { ReactNode } from 'react'
+import Table from './table'
+import CommonField from './common-field'
 
 interface Props {
   pokemons: any[]
@@ -50,7 +52,18 @@ function PokemonCard({
               <Col span={col}>
                 <div className="pokemon-description">
                   <Divider />
-                  <div className="flex justify-between">
+                  <Table>
+                    <CommonField fieldName="Name" fieldValue={pokemon.name} />
+                    {pokemon.nickname && (
+                      <CommonField
+                        fieldName="Nickname"
+                        fieldValue={pokemon.nickname}
+                        className="pl-2"
+                        style={{ textAlign: 'end' }}
+                      />
+                    )}
+                  </Table>
+                  {/* <div className="flex justify-between">
                     <p className="font-bold">Name</p>
                     <p className="capitalize text-center">{pokemon.name}</p>
                   </div>
@@ -64,7 +77,7 @@ function PokemonCard({
                         {pokemon.nickname}
                       </p>
                     </div>
-                  )}
+                  )} */}
                   <div className="flex justify-start">
                     <small>{`Owned (${
                       (pokemons || []).filter(
