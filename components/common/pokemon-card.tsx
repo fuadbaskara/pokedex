@@ -10,6 +10,7 @@ interface Props {
   col?: number
   actions?: ReactNode[]
   additionalInfo?: () => ReactNode | ReactNode
+  onClick?: () => void
 }
 
 const cardStyle = {
@@ -31,10 +32,14 @@ function PokemonCard({
   col,
   actions,
   additionalInfo,
+  onClick,
 }: Props) {
   return (
     <div id="pokemon-card">
-      <Card style={cardStyle}>
+      <Card
+        style={{ ...cardStyle, cursor: `${onClick ? 'pointer' : 'auto'}` }}
+        onClick={onClick}
+      >
         <div className="card-inner-containers">
           <div className="pokemon-info">
             <Row justify="center">
@@ -75,17 +80,19 @@ function PokemonCard({
               </Col>
             </Row>
           </div>
-          <div className="action-containers flex justify-center items-center">
-            <Row justify="center">
-              {(actions || [])
-                .filter((item) => item)
-                .map((item, key) => (
-                  <Col key={key} span={12}>
-                    {item}
-                  </Col>
-                ))}
-            </Row>
-          </div>
+          {actions && actions[0] && (
+            <div className="action-containers flex justify-center items-center">
+              <Row justify="center">
+                {(actions || [])
+                  .filter((item) => item)
+                  .map((item, key) => (
+                    <Col key={key} span={12}>
+                      {item}
+                    </Col>
+                  ))}
+              </Row>
+            </div>
+          )}
         </div>
       </Card>
     </div>
@@ -96,6 +103,7 @@ PokemonCard.defaultProps = {
   col: 24,
   additionalInfo: null,
   actions: [],
+  onClick: null,
 }
 
 export default PokemonCard

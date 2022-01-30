@@ -11,7 +11,7 @@ export default function CommonField({
 }) {
   return (
     <tr className="flex justify-between">
-      <td className="font-bold">{fieldName}</td>
+      <td className="capitalize font-bold">{fieldName}</td>
       <td className={`capitalize ${className}`} style={style}>
         {fieldValue}
       </td>

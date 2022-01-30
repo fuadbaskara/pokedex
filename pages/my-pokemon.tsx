@@ -7,8 +7,10 @@ import { PokemonContext } from 'context'
 import PokemonCard from 'components/common/pokemon-card'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 function PokemonList() {
+  const router = useRouter()
   const { pokemons, releasePokemon } = useContext(PokemonContext)
 
   const releaseThisPokemon = (nickname: string) => {
@@ -24,7 +26,6 @@ function PokemonList() {
             nickname || 'this pokemon'
           } to the wild.`,
         })
-        // router.push('/my-pokemon')
       },
       onCancel: () => {},
     })
@@ -47,6 +48,7 @@ function PokemonList() {
               <PokemonCard
                 pokemons={pokemons}
                 pokemon={pokemon}
+                onClick={() => router.push(`/detail/${pokemon.name}`)}
                 actions={[
                   <div className="flex justify-center" key="my-pokemon-detail">
                     <Link

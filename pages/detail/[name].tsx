@@ -43,6 +43,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
     },
   })
   const { pokemons, catchPokemon, releasePokemon } = useContext(PokemonContext)
+  const [isCatching, setIsCathing] = useState(false)
   const [pokemonCathced, setPokemonCatched] = useState(false)
   const [newNickname, setNickname] = useState('')
   const [pokemonDetail, setPokemonDetail] = useState(null)
@@ -83,16 +84,21 @@ export default function PokemonDetail({ name, nickname }: Props) {
   }, [loading, data, setDetail])
 
   const catchThisPokemon = () => {
-    if (Math.random() > 0.5) {
-      setVisible(true)
-    } else {
-      Modal.error({
-        title: `Oh Noes! ${pokemonDetail.name} has escaped :(`,
-        content: (
-          <p>{`${pokemonDetail.name} has run away! you might be scared it too much, No problem be gentle next time and try again`}</p>
-        ),
-      })
-    }
+    const gotcha = Math.random() > 0.5
+    setIsCathing(true)
+    setTimeout(() => {
+      if (gotcha) {
+        setVisible(true)
+      } else {
+        Modal.error({
+          title: `Oh Noes! ${pokemonDetail.name} has escaped :(`,
+          content: (
+            <p>{`${pokemonDetail.name} has run away! you might be scared it too much, No problem be gentle next time and try again`}</p>
+          ),
+        })
+      }
+      setIsCathing(false)
+    }, 1000)
   }
 
   const savePokemon = () => {
@@ -152,33 +158,40 @@ export default function PokemonDetail({ name, nickname }: Props) {
                   pokemons={pokemons}
                   pokemon={pokemonDetail}
                   additionalInfo={() => additionalInfo(pokemonDetail)}
-                  actions={[
-                    !nickname && (
-                      <div className="flex justify-center">
-                        <Button
-                          className="mr-2"
-                          type="primary"
-                          onClick={catchThisPokemon}
-                        >
-                          CATCH
-                        </Button>
-                        {pokemonCathced && (newNickname || nickname) && (
-                          <Link
-                            href={`/detail/${newNickname}?nickname=${
-                              newNickname || nickname
-                            }`}
+                />
+                <div id="pokemon-detail-actions" className="m-4">
+                  <Row justify="center" gutter={16}>
+                    {!nickname && (
+                      <>
+                        <Col span={24}>
+                          <Button
+                            block
+                            loading={isCatching}
+                            type="primary"
+                            onClick={catchThisPokemon}
                           >
-                            <a>
-                              <Button className="" type="primary">
-                                DETAIL
-                              </Button>
-                            </a>
-                          </Link>
+                            {`${isCatching ? 'Attempt to Catch...' : 'Catch!'}`}
+                          </Button>
+                        </Col>
+                        {pokemonCathced && (newNickname || nickname) && (
+                          <Col span={24}>
+                            <Link
+                              href={`/detail/${newNickname}?nickname=${
+                                newNickname || nickname
+                              }`}
+                            >
+                              <a>
+                                <Button block className="mt-2" type="primary">
+                                  View This Pokemon
+                                </Button>
+                              </a>
+                            </Link>
+                          </Col>
                         )}
-                      </div>
-                    ),
-                    nickname && (
-                      <div className="flex justify-center">
+                      </>
+                    )}
+                    {nickname && (
+                      <Col span={24}>
                         <Button
                           className=""
                           type="primary"
@@ -186,10 +199,10 @@ export default function PokemonDetail({ name, nickname }: Props) {
                         >
                           RELEASE
                         </Button>
-                      </div>
-                    ),
-                  ]}
-                />
+                      </Col>
+                    )}
+                  </Row>
+                </div>
               </Col>
             </Row>
             <div>
@@ -237,16 +250,20 @@ export default function PokemonDetail({ name, nickname }: Props) {
         onOk={savePokemon}
         onCancel={() => setVisible(false)}
       >
-        <h2>Congratulations!</h2>
-        <p>{`You Have just Caught ${name}`}</p>
+        <div className="catched-pokemon-notice pt-4 pb-4">
+          <h2 className="text-center text-4xl">
+            &#127882; Congratulations! &#127882;
+          </h2>
+          <p className="text-center">{`"You Have just Caught ${name}"`}</p>
+        </div>
         <Form form={form} layout="vertical" preserve={false}>
           <Form.Item
-            label="Your new pokemon Nickname"
+            label="Give your pokemon a nickname"
             name="nickname"
             rules={[
               {
                 required: true,
-                message: 'Please give your pokemon a nickname',
+                message: 'You must give your new pokemon a nickname',
               },
               () => ({
                 validator(_, value) {
@@ -255,13 +272,15 @@ export default function PokemonDetail({ name, nickname }: Props) {
                     : []
                   const isNicknameUsed = (myPokemon || []).filter(
                     (pokemon) =>
-                      pokemon.name === pokemonDetail.name &&
-                      pokemon.nickname === value,
+                      pokemon.name?.toLowerCase().trim() ===
+                        pokemonDetail.name?.toLowerCase().trim() &&
+                      pokemon.nickname?.toLowerCase().trim() ===
+                        value?.toLowerCase().trim(),
                   )
                   if (isNicknameUsed[0]) {
                     return Promise.reject(
                       new Error(
-                        `you have a same pokemon with the name ${value} already, please choose another nickname!`,
+                        `you have a same pokemon with the name ${value} already, please choose another nickname! (case insensitive)`,
                       ),
                     )
                   }

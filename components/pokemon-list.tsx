@@ -4,11 +4,13 @@ import { GET_POKEMONS } from 'gql/queries'
 import { Button, Row, Col } from 'antd'
 import { useRef, useEffect, useContext } from 'react'
 import { PokemonContext } from 'context'
+import { useRouter } from 'next/router'
 import PokemonCard from './common/pokemon-card'
 import SkeletonCard from './common/skeleton-card'
 
 function PokemonList() {
   let offset = 1
+  const router = useRouter()
   const { loading, fetchMore, data } = useQuery(GET_POKEMONS, {
     variables: {
       offset: 1,
@@ -60,12 +62,13 @@ function PokemonList() {
             <PokemonCard
               pokemons={pokemons}
               pokemon={pokemon}
+              onClick={() => router.push(`/detail/${pokemon.name}`)}
               actions={[
                 <Link key="pokemon-detail" href={`/detail/${pokemon.name}`}>
                   <a>
                     <div className="flex justify-center">
                       <Button className="" type="primary">
-                        DETAILS
+                        Details
                       </Button>
                     </div>
                   </a>
