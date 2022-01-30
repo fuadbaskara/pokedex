@@ -36,12 +36,13 @@ function PokemonCard({
 }: Props) {
   return (
     <div id="pokemon-card">
-      <Card
-        style={{ ...cardStyle, cursor: `${onClick ? 'pointer' : 'auto'}` }}
-        onClick={onClick}
-      >
+      <Card style={{ ...cardStyle }}>
         <div className="card-inner-containers">
-          <div className="pokemon-info">
+          <div
+            className="pokemon-info"
+            style={{ cursor: `${onClick ? 'pointer' : 'auto'}` }}
+            onClick={onClick}
+          >
             <Row justify="center">
               <Col span={col}>
                 <div className="img-container flex justify-center">

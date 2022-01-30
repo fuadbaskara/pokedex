@@ -48,7 +48,11 @@ function PokemonList() {
               <PokemonCard
                 pokemons={pokemons}
                 pokemon={pokemon}
-                onClick={() => router.push(`/detail/${pokemon.name}`)}
+                onClick={() =>
+                  router.push(
+                    `/detail/${pokemon.name}?nickname=${pokemon.nickname}`,
+                  )
+                }
                 actions={[
                   <div className="flex justify-center" key="my-pokemon-detail">
                     <Link

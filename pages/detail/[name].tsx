@@ -193,6 +193,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
                     {nickname && (
                       <Col span={24}>
                         <Button
+                          block
                           className=""
                           type="primary"
                           onClick={releaseThisPokemon}
