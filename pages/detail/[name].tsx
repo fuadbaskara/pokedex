@@ -127,27 +127,13 @@ export default function PokemonDetail({ name, nickname }: Props) {
       <Divider />
       <Table>
         <CommonField
-          className="capitalize"
           fieldName="Species"
           fieldValue={pokemonDetail.species.name}
         />
+        <CommonField fieldName="ID" fieldValue={pokemonDetail.id} />
+        <CommonField fieldName="Height" fieldValue={pokemonDetail.height} />
+        <CommonField fieldName="Weight" fieldValue={pokemonDetail.weight} />
         <CommonField
-          className="capitalize"
-          fieldName="ID"
-          fieldValue={pokemonDetail.id}
-        />
-        <CommonField
-          className="capitalize"
-          fieldName="Height"
-          fieldValue={pokemonDetail.height}
-        />
-        <CommonField
-          className="capitalize"
-          fieldName="Weight"
-          fieldValue={pokemonDetail.weight}
-        />
-        <CommonField
-          className="capitalize"
           fieldName="Base Exp."
           fieldValue={pokemonDetail.base_experience}
         />

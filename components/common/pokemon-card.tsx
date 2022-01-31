@@ -61,11 +61,7 @@ function PokemonCard({
                 <div className="pokemon-description">
                   <Divider />
                   <Table>
-                    <CommonField
-                      fieldName="Name"
-                      fieldValue={pokemon.name}
-                      className="capitalize"
-                    />
+                    <CommonField fieldName="Name" fieldValue={pokemon.name} />
                     {pokemon.nickname && (
                       <CommonField
                         fieldName="Nickname"
