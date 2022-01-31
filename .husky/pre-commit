@@ -15,7 +15,7 @@ npm run check-format ||
 npm run check-lint ||
 (
         echo '😤🏀👋😤 ESLint Coomplaining about you! 😤🏀👋😤 
-                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+                ESLint Check Failed. Make sure the required changes listed above, add changes and try to commit again.'
         false; 
 )
 
