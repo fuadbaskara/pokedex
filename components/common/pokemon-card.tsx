@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Card, Row, Col, Divider } from 'antd'
 import Image from 'next/image'
 import { ReactNode } from 'react'
+import { UpOutlined } from '@ant-design/icons'
 import Table from './table'
 import CommonField from './common-field'
 
@@ -82,7 +84,17 @@ function PokemonCard({
             </Row>
           </div>
           {actions && actions[0] && (
-            <div className="action-containers flex justify-center items-center">
+            <div className="relative mobile-actions">
+              <div className="open-mobile-actions w-full">
+                <UpOutlined />
+              </div>
+            </div>
+          )}
+          {actions && actions[0] && (
+            <div
+              id="action-containers"
+              className="action-containers flex justify-center items-center"
+            >
               <Row justify="center">
                 {(actions || [])
                   .filter((item) => item)
