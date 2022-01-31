@@ -140,7 +140,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
   )
 
   const pageDescription = {
-    title: 'Pokemon Detail',
+    title: 'Pokemon Details',
     description: `Here is all the info we have for this Pokemon`,
   }
 
