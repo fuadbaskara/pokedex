@@ -48,13 +48,13 @@ export default function PokemonDetail({ name, nickname }: Props) {
   const [newNickname, setNickname] = useState('')
   const [pokemonDetail, setPokemonDetail] = useState(null)
 
-  const releaseThisPokemon = () => {
+  const releaseThisPokemon = (name: string) => {
     Modal.confirm({
       title: `Are you sure want to release ${
         nickname || 'this pokemon'
       } to the wild?`,
       onOk: () => {
-        releasePokemon(nickname)
+        releasePokemon(name, nickname)
         notification.success({
           message: 'Pokemon Successfully Released!',
           description: `You have released ${
@@ -196,7 +196,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
                           block
                           className=""
                           type="primary"
-                          onClick={releaseThisPokemon}
+                          onClick={() => releaseThisPokemon(pokemonDetail.name)}
                         >
                           RELEASE
                         </Button>
