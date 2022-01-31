@@ -69,7 +69,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
 
   const setDetail = () => {
     const selectedPokemonDetail = pokemons.filter(
-      (pokemon) => pokemon.nickname === nickname,
+      (pokemon) => pokemon.name === name && pokemon.nickname === nickname,
     )
     setPokemonDetail(selectedPokemonDetail[0])
   }
@@ -176,7 +176,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
                         {pokemonCathced && (newNickname || nickname) && (
                           <Col span={24}>
                             <Link
-                              href={`/detail/${newNickname}?nickname=${
+                              href={`/detail/${pokemonDetail.name}?nickname=${
                                 newNickname || nickname
                               }`}
                             >
