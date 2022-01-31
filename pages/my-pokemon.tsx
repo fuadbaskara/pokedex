@@ -13,13 +13,13 @@ function PokemonList() {
   const router = useRouter()
   const { pokemons, releasePokemon } = useContext(PokemonContext)
 
-  const releaseThisPokemon = (name: string, nickname: string) => {
+  const releaseThisPokemon = (myPokemonId: string, nickname: string) => {
     Modal.confirm({
       title: `Are you sure want to release ${
         nickname || 'this pokemon'
       } to the wild?`,
       onOk: () => {
-        releasePokemon(name, nickname)
+        releasePokemon(myPokemonId)
         notification.success({
           message: 'Pokemon Successfully Released!',
           description: `You have released ${
@@ -70,7 +70,10 @@ function PokemonList() {
                       className="ml-2"
                       type="primary"
                       onClick={() =>
-                        releaseThisPokemon(pokemon.name, pokemon.nickname)
+                        releaseThisPokemon(
+                          pokemon.my_pokemon_id,
+                          pokemon.nickname,
+                        )
                       }
                     >
                       RELEASE

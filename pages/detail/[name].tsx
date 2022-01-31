@@ -14,6 +14,7 @@ import {
   Divider,
 } from 'antd'
 import { useContext, useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
 import PokemonCard from 'components/common/pokemon-card'
@@ -48,13 +49,13 @@ export default function PokemonDetail({ name, nickname }: Props) {
   const [newNickname, setNickname] = useState('')
   const [pokemonDetail, setPokemonDetail] = useState(null)
 
-  const releaseThisPokemon = (name: string) => {
+  const releaseThisPokemon = (myPokemonId: string) => {
     Modal.confirm({
       title: `Are you sure want to release ${
         nickname || 'this pokemon'
       } to the wild?`,
       onOk: () => {
-        releasePokemon(name, nickname)
+        releasePokemon(myPokemonId)
         notification.success({
           message: 'Pokemon Successfully Released!',
           description: `You have released ${
@@ -106,6 +107,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
       const pokemonInfo = {
         ...data.pokemon,
         nickname: values.nickname,
+        my_pokemon_id: uuidv4(),
       }
       setNickname(values.nickname)
       catchPokemon(pokemonInfo)
@@ -196,7 +198,9 @@ export default function PokemonDetail({ name, nickname }: Props) {
                           block
                           className=""
                           type="primary"
-                          onClick={() => releaseThisPokemon(pokemonDetail.name)}
+                          onClick={() =>
+                            releaseThisPokemon(pokemonDetail.my_pokemon_id)
+                          }
                         >
                           RELEASE
                         </Button>
