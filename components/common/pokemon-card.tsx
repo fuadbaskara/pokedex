@@ -1,14 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Card, Row, Col, Divider } from 'antd'
+import { Card, Row, Col, Divider, Tag } from 'antd'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 import { UpOutlined } from '@ant-design/icons'
+import { Pokemon } from 'gql/models'
+import { v4 as uuidv4 } from 'uuid'
 import Table from './table'
 import CommonField from './common-field'
 
 interface Props {
-  pokemons: any[]
-  pokemon: any
+  pokemons: Pokemon[]
+  pokemon: Pokemon
   col?: number
   actions?: ReactNode[]
   additionalInfo?: () => ReactNode | ReactNode
@@ -60,6 +62,20 @@ function PokemonCard({
               <Col span={col}>
                 <div className="pokemon-description">
                   <Divider />
+                  {pokemon.types && (
+                    <Row justify="end" className="mb-2">
+                      <Col>
+                        {pokemon.types.map((type) => (
+                          <Tag
+                            className={`type-tag color--${type.type.name}`}
+                            key={uuidv4()}
+                          >
+                            {type.type.name}
+                          </Tag>
+                        ))}
+                      </Col>
+                    </Row>
+                  )}
                   <Table>
                     <CommonField fieldName="Name" fieldValue={pokemon.name} />
                     {pokemon.nickname && (

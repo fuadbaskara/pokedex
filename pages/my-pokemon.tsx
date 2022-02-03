@@ -8,6 +8,7 @@ import PokemonCard from 'components/common/pokemon-card'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { Pokemon } from 'gql/models'
 
 function PokemonList() {
   const router = useRouter()
@@ -43,7 +44,7 @@ function PokemonList() {
       </Head>
       <div style={{ paddingBottom: '120px' }}>
         <Row justify="center">
-          {(pokemons || []).map((pokemon: any, idx: number) => (
+          {(pokemons || []).map((pokemon: Pokemon, idx: number) => (
             <Col key={idx} xs={24} sm={24} md={10}>
               <PokemonCard
                 pokemons={pokemons}

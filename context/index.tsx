@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useState, useEffect, ReactNode } from 'react'
+import { Pokemon } from 'gql/models'
 
 type PokemonContextType = {
-  pokemons: any[]
-  catchPokemon: (catchedPokemon: any) => void
+  pokemons: Pokemon[]
+  catchPokemon: (catchedPokemon: Pokemon) => void
   releasePokemon: (myPokemonId: string) => void
 }
 
@@ -17,14 +18,14 @@ function PokemonProvider({ children }: Props) {
   const [pokemons, setPokemons] = useState([])
 
   const releasePokemon = (myPokemonId: string) => {
-    const newPokemonList = pokemons.filter((pokemon: any) => {
+    const newPokemonList = pokemons.filter((pokemon: Pokemon) => {
       return pokemon.my_pokemon_id !== myPokemonId
     })
     localStorage.setItem('pokemons', JSON.stringify(newPokemonList))
     setPokemons(newPokemonList)
   }
 
-  const catchPokemon = (catchedPokemon: any) => {
+  const catchPokemon = (catchedPokemon: Pokemon) => {
     const newPokemonList = [...pokemons, ...[catchedPokemon]]
     localStorage.setItem('pokemons', JSON.stringify(newPokemonList))
     setPokemons(newPokemonList)

@@ -5,6 +5,7 @@ import { Button, Row, Col } from 'antd'
 import { useRef, useEffect, useContext } from 'react'
 import { PokemonContext } from 'context'
 import { useRouter } from 'next/router'
+import { Pokemon } from 'gql/models'
 import PokemonCard from './common/pokemon-card'
 import SkeletonCard from './common/skeleton-card'
 
@@ -57,26 +58,28 @@ function PokemonList() {
   return (
     <>
       <Row justify="center">
-        {(data?.pokemons?.results || []).map((pokemon: any, idx: number) => (
-          <Col key={idx} xs={24} sm={24} md={8}>
-            <PokemonCard
-              pokemons={pokemons}
-              pokemon={pokemon}
-              onClick={() => router.push(`/detail/${pokemon.name}`)}
-              actions={[
-                <Link key="pokemon-detail" href={`/detail/${pokemon.name}`}>
-                  <a>
-                    <div className="flex justify-center">
-                      <Button className="" type="primary">
-                        Details
-                      </Button>
-                    </div>
-                  </a>
-                </Link>,
-              ]}
-            />
-          </Col>
-        ))}
+        {(data?.pokemons?.results || []).map(
+          (pokemon: Pokemon, idx: number) => (
+            <Col key={idx} xs={24} sm={24} md={8}>
+              <PokemonCard
+                pokemons={pokemons}
+                pokemon={pokemon}
+                onClick={() => router.push(`/detail/${pokemon.name}`)}
+                actions={[
+                  <Link key="pokemon-detail" href={`/detail/${pokemon.name}`}>
+                    <a>
+                      <div className="flex justify-center">
+                        <Button className="" type="primary">
+                          Details
+                        </Button>
+                      </div>
+                    </a>
+                  </Link>,
+                ]}
+              />
+            </Col>
+          ),
+        )}
       </Row>
       <Row justify="center">
         <div className="md-skeleton w-full">

@@ -1,6 +1,7 @@
 import { Divider } from 'antd'
+import { Type } from 'gql/models'
 
-export default function Types({ types }: { types: any[] }) {
+export default function Types({ types }: { types: Type[] }) {
   return (
     <div className="p-2">
       {(types || []).map((type, key) => (

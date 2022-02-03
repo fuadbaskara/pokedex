@@ -1,6 +1,7 @@
 import { Tag } from 'antd'
+import { Move } from 'gql/models'
 
-export default function Moves({ moves }: { moves: any[] }) {
+export default function Moves({ moves }: { moves: Move[] }) {
   return (
     <div className="p-2">
       {(moves || []).map((move, key) => (

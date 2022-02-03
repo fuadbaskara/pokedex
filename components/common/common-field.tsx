@@ -4,8 +4,8 @@ export default function CommonField({
   className,
   style,
 }: {
-  fieldName: any
-  fieldValue: any
+  fieldName: string
+  fieldValue: string | number
   className?: string
   style?: any
 }) {

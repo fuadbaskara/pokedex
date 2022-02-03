@@ -26,6 +26,7 @@ import Types from 'components/types'
 import SkeletonCard from 'components/common/skeleton-card'
 import Head from 'next/head'
 import Table from 'components/common/table'
+import { Pokemon } from 'gql/models'
 
 interface Props {
   name: string
@@ -122,7 +123,7 @@ export default function PokemonDetail({ name, nickname }: Props) {
     })
   }
 
-  const additionalInfo = (pokemonDetail: any) => (
+  const additionalInfo = (pokemonDetail: Pokemon) => (
     <>
       <Divider />
       <Table>

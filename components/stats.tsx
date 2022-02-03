@@ -1,6 +1,7 @@
 import { Divider } from 'antd'
+import { Stat } from 'gql/models'
 
-export function Stats({ stats }: { stats: any[] }) {
+export function Stats({ stats }: { stats: Stat[] }) {
   return (
     <>
       {(stats || []).map((stat, idx) => {

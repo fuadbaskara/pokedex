@@ -9,9 +9,12 @@ export const GET_POKEMONS = gql`
       status
       message
       results {
+        id
         url
         name
         image
+        artwork
+        dreamworld
       }
     }
   }
@@ -34,6 +37,21 @@ export const GET_POKEMON_DETAIL = gql`
         name
       }
       height
+      held_items {
+        item {
+          id
+          url
+          name
+        }
+        version_details {
+          rarity
+          version {
+            id
+            url
+            name
+          }
+        }
+      }
       id
       is_default
       location_area_encounters

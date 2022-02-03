@@ -523,6 +523,95 @@ table {
   }
 }
 
+.type-tag {
+  text-transform: capitalize;
+  border-radius: 20px !important;
+  padding: 6px 15px !important;
+}
+
+.color-- {
+  &bug {
+    background: #a8b820 !important;
+    border: 1px solid #a8b820 !important;
+  }
+  &dark {
+    background: #705848 !important;
+    border: 1px solid #705848 !important;
+  }
+  &dragon {
+    background: #7038f8 !important;
+    border: 1px solid #7038f8 !important;
+  }
+  &electric {
+    background: #f8d030 !important;
+    border: 1px solid #f8d030 !important;
+  }
+  &fighting {
+    background: #c03028 !important;
+    border: 1px solid #c03028 !important;
+  }
+  &fire {
+    background: #f08030 !important;
+    border: 1px solid #f08030 !important;
+  }
+  &flying {
+    background: #a890f0 !important;
+    border: 1px solid #a890f0 !important;
+  }
+  &ghost {
+    background: #705898 !important;
+    border: 1px solid #705898 !important;
+  }
+  &grass {
+    background: #78c850 !important;
+    border: 1px solid #78c850 !important;
+  }
+  &ground {
+    background: #e0c068 !important;
+    border: 1px solid #e0c068 !important;
+  }
+  &ice {
+    background: #98d8d8 !important;
+    border: 1px solid #98d8d8 !important;
+  }
+  &normal {
+    background: #a8a878 !important;
+    border: 1px solid #a8a878 !important;
+  }
+  &poison {
+    background: #a040a0 !important;
+    border: 1px solid #a040a0 !important;
+  }
+  &psychic {
+    background: #f85888 !important;
+    border: 1px solid #f85888 !important;
+  }
+  &rock {
+    background: #b8a038 !important;
+    border: 1px solid #b8a038 !important;
+  }
+  &shadow {
+    background: #12470b !important;
+    border: 1px solid #12470b !important;
+  }
+  &steel {
+    background: #b8b8d0 !important;
+    border: 1px solid #b8b8d0 !important;
+  }
+  &unknown {
+    background: #12470b !important;
+    border: 1px solid #12470b !important;
+  }
+  &water {
+    background: #6890f0 !important;
+    border: 1px solid #6890f0 !important;
+  }
+  &fairy {
+    background: #f0b6bc !important;
+    border: 1px solid #f0b6bc !important;
+  }
+}
+
 @keyframes bouncing {
   0% {
     transform: scale(1, 1) translateY(0);
