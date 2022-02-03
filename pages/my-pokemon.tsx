@@ -57,7 +57,14 @@ function PokemonList() {
                 actions={[
                   <div className="flex justify-center" key="my-pokemon-detail">
                     <Link
-                      href={`/detail/${pokemon.name}?nickname=${pokemon.nickname}`}
+                      href={{
+                        pathname: `/detail/[name]`,
+                        query: {
+                          name: pokemon.name,
+                          nickname: pokemon.nickname,
+                        },
+                      }}
+                      // href={`/detail/${pokemon.name}?nickname=${pokemon.nickname}`}
                     >
                       <a>
                         <Button className="mr-2" type="primary">

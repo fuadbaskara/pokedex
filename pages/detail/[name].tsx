@@ -28,9 +28,12 @@ import Head from 'next/head'
 import Table from 'components/common/table'
 import { Pokemon } from 'gql/models'
 
-export default function PokemonDetail() {
+interface Props {
+  name: string
+  nickname: string | null
+}
+export default function PokemonDetail({ name, nickname }: Props) {
   const router = useRouter()
-  const { name, nickname } = router.query
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const { loading, data } = useQuery(GET_POKEMON_DETAIL, {
@@ -176,9 +179,16 @@ export default function PokemonDetail() {
                         {pokemonCathced && (newNickname || nickname) && (
                           <Col span={24}>
                             <Link
-                              href={`/detail/${pokemonDetail.name}?nickname=${
-                                newNickname || nickname
-                              }`}
+                              href={{
+                                pathname: `/detail/[name]`,
+                                query: {
+                                  name: pokemonDetail.name,
+                                  nickname: newNickname || nickname,
+                                },
+                              }}
+                              // href={`/detail/${pokemonDetail.name}?nickname=${
+                              //   newNickname || nickname
+                              // }`}
                             >
                               <a>
                                 <Button block className="mt-2" type="primary">
@@ -213,13 +223,13 @@ export default function PokemonDetail() {
                 <Col xs={24} sm={24} md={12}>
                   <Tabs defaultActiveKey="1" type="card" animated>
                     <Tabs.TabPane tab="Stats" key="1">
-                      <Stats stats={pokemonDetail} />
+                      <Stats stats={pokemonDetail.stats} />
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="Types" key="2">
-                      <Types types={pokemonDetail} />
+                      <Types types={pokemonDetail.types} />
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="Moves" key="3">
-                      <Moves moves={pokemonDetail} />
+                      <Moves moves={pokemonDetail.moves} />
                     </Tabs.TabPane>
                   </Tabs>
                 </Col>
@@ -298,4 +308,9 @@ export default function PokemonDetail() {
       </Modal>
     </Layout>
   )
+}
+
+PokemonDetail.getInitialProps = async (context: any) => {
+  const { name, nickname } = context.query
+  return { name, nickname: nickname || null }
 }

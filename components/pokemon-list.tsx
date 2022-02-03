@@ -67,7 +67,13 @@ function PokemonList() {
                 pokemon={pokemon}
                 onClick={() => router.push(`/detail/${pokemon.name}`)}
                 actions={[
-                  <Link key="pokemon-detail" href={`/detail/${pokemon.name}`}>
+                  <Link
+                    key="pokemon-detail"
+                    href={{
+                      pathname: `/detail/[name]`,
+                      query: { name: pokemon.name },
+                    }}
+                  >
                     <a>
                       <div className="flex justify-center">
                         <Button className="" type="primary">
