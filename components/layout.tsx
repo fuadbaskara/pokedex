@@ -107,7 +107,9 @@ function PageLayout({ children, pageDescription }: Props) {
                 <h1 className="text-2xl text-center">
                   {pageDescription.title}
                 </h1>
-                <p className="text-center">{pageDescription.description}</p>
+                <p className="text-center text-sm max-w-screen-sm p-2">
+                  {pageDescription.description}
+                </p>
               </div>
             )}
             <div className="gradient" />
