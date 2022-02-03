@@ -63,7 +63,7 @@ function PokemonCard({
                 <div className="pokemon-description">
                   <Divider />
                   {pokemon.types && (
-                    <Row justify="end" className="mb-2">
+                    <Row justify="center" className="mb-2">
                       <Col>
                         {pokemon.types.map((type) => (
                           <Tag
