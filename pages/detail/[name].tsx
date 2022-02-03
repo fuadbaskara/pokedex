@@ -28,13 +28,9 @@ import Head from 'next/head'
 import Table from 'components/common/table'
 import { Pokemon } from 'gql/models'
 
-interface Props {
-  name: string
-  nickname: string
-}
-
-export default function PokemonDetail({ name, nickname }: Props) {
+export default function PokemonDetail() {
   const router = useRouter()
+  const { name, nickname } = router.query
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
   const { loading, data } = useQuery(GET_POKEMON_DETAIL, {
@@ -301,14 +297,4 @@ export default function PokemonDetail({ name, nickname }: Props) {
       </Modal>
     </Layout>
   )
-}
-
-export async function getServerSideProps(context: any) {
-  const { name, nickname } = context.query
-  return {
-    props: {
-      name,
-      nickname: nickname || null,
-    },
-  }
 }

@@ -115,9 +115,7 @@ function PokemonCard({
                 {(actions || [])
                   .filter((item) => item)
                   .map((item, key) => (
-                    <Col key={key} span={12}>
-                      {item}
-                    </Col>
+                    <Col key={key}>{item}</Col>
                   ))}
               </Row>
             </div>
