@@ -49,6 +49,7 @@ function PageLayout({ children, pageDescription }: Props) {
     if (typeof window !== 'undefined') {
       initLayoutAnimation()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

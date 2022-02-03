@@ -79,6 +79,7 @@ export default function PokemonDetail() {
     if (!loading && !nickname) {
       setPokemonDetail(data.pokemon)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, data, setDetail])
 
   const catchThisPokemon = () => {
@@ -212,13 +213,13 @@ export default function PokemonDetail() {
                 <Col xs={24} sm={24} md={12}>
                   <Tabs defaultActiveKey="1" type="card" animated>
                     <Tabs.TabPane tab="Stats" key="1">
-                      {Stats(pokemonDetail)}
+                      <Stats stats={pokemonDetail} />
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="Types" key="2">
-                      {Types(pokemonDetail)}
+                      <Types types={pokemonDetail} />
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="Moves" key="3">
-                      {Moves(pokemonDetail)}
+                      <Moves moves={pokemonDetail} />
                     </Tabs.TabPane>
                   </Tabs>
                 </Col>

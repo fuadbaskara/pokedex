@@ -53,6 +53,7 @@ function PokemonList() {
       entries[0].isIntersecting && !loading && handleMore()
     const observer = new IntersectionObserver(onIntersection, { threshold: 1 })
     observer.observe(scrollRef.current)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
 
   return (
